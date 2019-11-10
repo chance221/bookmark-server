@@ -5,9 +5,8 @@ const cors = require('cors')
 const helmet = require('helmet');
 const { NODE_ENV } = require('./config');
 const app = express();
-const winston = require('winston');
 const logger = require('./logger');
-const uuid = require('uuid/v4')
+const bookmarkRouter = require('./bookmark/bookmark-router')
 
 const morganOption = (NODE_ENV === 'production') ? 'tiny' : 'common'
 
@@ -42,6 +41,6 @@ app.use(function errorHandler(error, req, res, next){
   res.status(500).json(response)
 })
 
-app.use
+app.use(bookmarkRouter)
 
 module.exports = app
